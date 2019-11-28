@@ -1,0 +1,38 @@
+#server:
+#  address: 127.0.0.1
+#  port: 8001
+spring:
+  application:
+    name: ocu-user
+  datasource:
+      #引入druid数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/ocu?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true
+    username: root
+    password: root
+#mybatis-plush配置
+mybatis-plus:
+  type-aliases-package: com.dahua.commons.pojo
+  mapper-locations: classpath:/mybatis/mappers/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:2001/eureka,http://127.0.0.1:2002/eureka
+---
+spring:
+  profiles: user-server1
+
+server:
+#  address: 127.0.0.1
+  port: 8001
+---
+spring:
+  profiles: user-server2
+
+server:
+#  address: 127.0.0.1
+  port: 8002
